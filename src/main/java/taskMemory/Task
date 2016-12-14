@@ -1,0 +1,6 @@
+
+Add to your application code which includes passing by reference.
+Don't add returning the reference from method.
+Make creation of the new object in method where you pass value by reference (the new object is for value).
+Analyze the code structure, change the code by returning the value of scalar type and object type.
+
