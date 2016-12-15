@@ -1,19 +1,15 @@
 package taskClassload;
 
-import org.apache.log4j.Logger;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Scanner;
 
-
-/**
- * Created by yauhen on 13.12.16.
- */
 public class MyClassLoader {
-    private static final Logger log = Logger.getLogger(MyClassLoader.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MyClassLoader.class);
     private static File dir = new File("jars/");
     private static Scanner sc = new Scanner(System.in);
     private static int counter = 1;
@@ -38,21 +34,20 @@ public class MyClassLoader {
                         classLoader = URLClassLoader.newInstance(
                                 new URL[]{new File(classAdr).toURL()},
                                 getClass().getClassLoader());
-                        log.info(classAdr);
+                        LOG.info(classAdr);
                         Class refTest = classLoader.loadClass("ReferenceTest");
-
                         Method method = refTest.getDeclaredMethod("run");
-                        log.info(method.getName());
+                        LOG.info(method.getName());
                         Object instance = refTest.newInstance();
                         method.invoke(instance);
 
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        LOG.error("JAR missing or damaged; Cannot load class file");
                     }
 
 
                 } catch (NullPointerException e) {
-                    log.error("WRONG INPUT");
+                    LOG.error("WRONG INPUT");
                 }
 
             }
