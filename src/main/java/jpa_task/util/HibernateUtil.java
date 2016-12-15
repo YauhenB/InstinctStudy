@@ -1,8 +1,4 @@
-package JPA_task.Util;
-
-/**
- * Created by yauhen on 14.12.16.
- */
+package jpa_task.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

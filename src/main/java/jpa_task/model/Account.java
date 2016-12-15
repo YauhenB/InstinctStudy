@@ -1,4 +1,4 @@
-package JPA_task.Model;
+package jpa_task.model;
 
 import javax.persistence.*;
 
@@ -17,7 +17,7 @@ public class Account {
     @Column(name = "password")
     private String password;
     @ManyToOne
-    @JoinColumn(foreignKey=@ForeignKey(name = "owner"))
+    @JoinColumn(foreignKey = @ForeignKey(name = "owner"))
     private Client owner;
 
     public Account() {
@@ -46,4 +46,16 @@ public class Account {
     public void setOwner(Client owner) {
         this.owner = owner;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "\nId: " + this.getId().toString() + "\nLogin: "
+                + this.getLogin() + "\nPassword: " + this.getPassword() + "\nOwner id:" + owner.getId();
+    }
+
+
 }

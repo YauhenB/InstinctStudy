@@ -1,4 +1,4 @@
-package jpa_task.dao.impl;
+package jpa_task.dao;
 
 import jpa_task.util.HibernateUtil;
 import org.hibernate.Session;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by yauhen on 15.12.16.
  */
-public class AbstractDao<T> {
+public abstract class AbstractDao<T> {
     private T entity;
 
     public void create(T entity) {
@@ -38,7 +38,7 @@ public class AbstractDao<T> {
         return ret;
     }
 
-    public void delById(Long id,String table) {
+    public void delById(Long id, String table) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         String hql = "Delete from ".concat(table);
@@ -49,12 +49,11 @@ public class AbstractDao<T> {
         session.close();
     }
 
-    public List<T> getAll(Class model,String table)
-    {
+    public List<T> getAll(Class model, String table) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        String hql="from ".concat(table);
-        TypedQuery<T> query=session.createQuery(hql, model);
-        List<T> ret=query.getResultList();
+        String hql = "from ".concat(table);
+        TypedQuery<T> query = session.createQuery(hql, model);
+        List<T> ret = query.getResultList();
         session.close();
         return ret;
     }

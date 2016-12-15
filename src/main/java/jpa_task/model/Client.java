@@ -1,4 +1,4 @@
-package JPA_task.Model;
+package jpa_task.model;
 
 import javax.persistence.*;
 
@@ -34,5 +34,15 @@ public class Client {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "\nId: " + this.getId().toString() + "\nName: "
+                + this.getName() + "\nSurname: " + this.getSurname();
     }
 }

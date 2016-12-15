@@ -1,12 +1,16 @@
-package JPA_task.Dao;
+package jpa_task.dao;
 
-import JPA_task.Model.Account;
+import jpa_task.model.Account;
+
+import java.util.List;
 
 /**
  * Created by yauhen on 14.12.16.
  */
 public interface AccountDao {
-    void createAccount(Account account);
-    void delAccount(Long id);
-    Account getAccountById(Long id);
+    void create(Account account);
+    void delete(Account account);
+    void delById(Long id);
+    Account getById(Long id);
+    List<Account> getAll();
 }
