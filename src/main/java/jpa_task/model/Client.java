@@ -2,9 +2,6 @@ package jpa_task.model;
 
 import javax.persistence.*;
 
-/**
- * Created by yauhen on 14.12.16.
- */
 @Entity
 @Table(name = "clients")
 public class Client {
@@ -17,8 +14,6 @@ public class Client {
     @Column(name = "surname")
     private String surname;
 
-    public Client() {
-    }
 
     public String getName() {
         return name;

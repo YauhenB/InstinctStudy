@@ -2,9 +2,6 @@ package jpa_task.model;
 
 import javax.persistence.*;
 
-/**
- * Created by yauhen on 14.12.16.
- */
 @Entity
 @Table(name = "accounts")
 public class Account {
@@ -20,8 +17,6 @@ public class Account {
     @JoinColumn(foreignKey = @ForeignKey(name = "owner"))
     private Client owner;
 
-    public Account() {
-    }
 
     public String getLogin() {
         return login;
@@ -53,8 +48,10 @@ public class Account {
 
     @Override
     public String toString() {
-        return "\nId: " + this.getId().toString() + "\nLogin: "
-                + this.getLogin() + "\nPassword: " + this.getPassword() + "\nOwner id:" + owner.getId();
+        return "\nId: " + this.getId().toString()
+                + "\nLogin: " + this.getLogin()
+                + "\nPassword: " + this.getPassword()
+                + "\nOwner id:" + owner.getId();
     }
 
 

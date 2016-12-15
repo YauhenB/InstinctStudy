@@ -7,9 +7,6 @@ import org.hibernate.query.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-/**
- * Created by yauhen on 15.12.16.
- */
 public abstract class AbstractDao<T> {
     private T entity;
 
@@ -41,8 +38,7 @@ public abstract class AbstractDao<T> {
     public void delById(Long id, String table) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        String hql = "Delete from ".concat(table);
-        hql.concat(" where id=:id");
+        String hql = "Delete from ".concat(table).concat(" where id=:id");
         Query query = session.createQuery(hql).setParameter("id", id);
         query.executeUpdate();
         session.getTransaction().commit();

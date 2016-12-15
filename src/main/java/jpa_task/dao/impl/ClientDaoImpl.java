@@ -6,15 +6,13 @@ import jpa_task.model.Account;
 import jpa_task.model.Client;
 import jpa_task.util.HibernateUtil;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-/**
- * Created by yauhen on 14.12.16.
- */
 public class ClientDaoImpl extends AbstractDao<Client> implements ClientDao {
+    private static final String ENTITYNAME = "Client";
+
     @Override
     public void create(Client client) {
         super.create(client);
@@ -27,7 +25,7 @@ public class ClientDaoImpl extends AbstractDao<Client> implements ClientDao {
 
     @Override
     public void delById(Long id) {
-        super.delById(id, "Client");
+        super.delById(id, ENTITYNAME);
     }
 
     @Override
@@ -37,13 +35,14 @@ public class ClientDaoImpl extends AbstractDao<Client> implements ClientDao {
 
     @Override
     public List<Client> getAll() {
-        return super.getAll(Client.class, "Client");
+        return super.getAll(Client.class, ENTITYNAME);
     }
 
     public List<Account> getClientAccounts(Client client) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         String hql = "from Account as acc where acc.owner.id=:id";
-        TypedQuery<Account> query = session.createQuery(hql, Account.class).setParameter("id", client.getId());
+        TypedQuery<Account> query = session.createQuery(hql, Account.class);
+        query.setParameter("id", client.getId());
         List<Account> ret = query.getResultList();
         session.close();
         return ret;
