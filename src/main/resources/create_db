@@ -1,0 +1,5 @@
+DROP TABLE clients;
+DROP TABLE users;
+CREATE TABLE clients (id SERIAL PRIMARY KEY, name CHAR(64), surname CHAR(64));
+CREATE TABLE accounts (id SERIAL PRIMARY KEY, login CHAR(64), password CHAR(64),  owner integer references clients(id));
+
