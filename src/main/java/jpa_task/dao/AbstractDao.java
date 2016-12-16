@@ -8,12 +8,14 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 public abstract class AbstractDao<T> {
-    private T entity;
+
 
     public void create(T entity) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        session.save(entity);
+        if (session.contains(entity)) {
+            session.update(entity);
+        } else session.save(entity);
         session.getTransaction().commit();
         session.close();
     }
@@ -21,6 +23,7 @@ public abstract class AbstractDao<T> {
     public void delete(T entity) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
+        if(session.contains(entity))
         session.delete(entity);
         session.getTransaction().commit();
         session.close();

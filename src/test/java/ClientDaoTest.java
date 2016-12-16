@@ -1,6 +1,5 @@
 import jpa_task.dao.ClientDao;
 import jpa_task.dao.impl.ClientDaoImpl;
-import jpa_task.model.Account;
 import jpa_task.model.Client;
 import org.junit.Test;
 
@@ -8,7 +7,6 @@ import static org.junit.Assert.*;
 
 public class ClientDaoTest {
     private static ClientDao clientDao = new ClientDaoImpl();
-    private static Account testAcc = new Account();
     private static Client testClient = new Client();
 
     @Test
@@ -31,7 +29,7 @@ public class ClientDaoTest {
         for (Client client : clientDao.getAll()) {
             name = client.getName().trim();
             if (name.equals("test")) {
-                this.testClient = client;
+                testClient = client;
                 flag = true;
             }
         }

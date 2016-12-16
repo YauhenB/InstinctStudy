@@ -13,7 +13,6 @@ public class AccountDaoTest {
     private static AccountDao accountDao = new AccountDaoImpl();
     private static ClientDao clientDao = new ClientDaoImpl();
     private static Account testAcc = new Account();
-    private static Client testClient = new Client();
 
     @Test
     public void testGetById() {
@@ -27,21 +26,23 @@ public class AccountDaoTest {
 
     @Test
     public void testCreation() {
-        testClient = clientDao.getById(1L);
+        Client testClient = clientDao.getById(1L);
         testAcc.setOwner(testClient);
         testAcc.setLogin("testacc");
         testAcc.setPassword("testpass");
         accountDao.create(testAcc);
-        this.testAcc = accountDao.getByLogin("testacc");
+        testAcc = accountDao.getByLogin("testacc");
         assertNotNull(testAcc);
 
     }
 
     @Test
-    public void testDelete() {
+    public void testDeleteByID() {
         accountDao.delById(accountDao.getByLogin("testacc").getId());
         assertNull(accountDao.getByLogin("testacc"));
 
     }
+
+
 
 }

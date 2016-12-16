@@ -5,13 +5,11 @@ import jpa_task.dao.impl.ClientDaoImpl;
 import jpa_task.model.Account;
 import jpa_task.model.Client;
 import jpa_task.util.HibernateUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Scanner;
 
 public class Main {
-    private static final Logger LOG = LoggerFactory.getLogger(Main.class);
+
     private static ClientDaoImpl clientDao = new ClientDaoImpl();
     private static AccountDaoImpl accountDao = new AccountDaoImpl();
     private static Boolean flag = true;
