@@ -5,6 +5,9 @@ import study.library.model.User;
 
 import java.util.List;
 
+/**
+ * Describing methods for @{@link User} DAO.
+ */
 public interface UserDao {
 
     void create(User user);

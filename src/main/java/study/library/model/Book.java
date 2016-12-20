@@ -1,8 +1,19 @@
 package study.library.model;
 
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+/**
+ * Book model.
+ */
 @Entity
 @Table(name = "books")
 public class Book {
@@ -25,7 +36,7 @@ public class Book {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -33,7 +44,7 @@ public class Book {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void setOwner(final User owner) {
         this.owner = owner;
     }
 
@@ -42,7 +53,7 @@ public class Book {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
 
         this.name = name;
     }
@@ -52,21 +63,22 @@ public class Book {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(final String author) {
 
         this.author = author;
     }
 
     @Override
     public String toString() {
-        String ret = "\nID:" + this.id +
-                "\nName:" + this.name +
-                "\nAuthor:" + this.author +
-                "\nOwner:";
-        if (this.owner != null)
-            ret += this.owner.getLogin();
-        else
+        String ret = "\nID:" + this.id
+                + "\nName:" + this.name
+                + "\nAuthor:" + this.author
+                + "\nOwner:";
+        if (this.owner == null) {
             ret += "No owner";
+        } else {
+            ret += this.owner.getLogin();
+        }
         return ret;
     }
 }

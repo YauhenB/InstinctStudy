@@ -4,6 +4,10 @@ import study.library.model.Book;
 
 import java.util.List;
 
+
+/**
+ * Describing methods for @{@link Book} DAO.
+ */
 public interface BookDao {
 
     void create(Book book);

@@ -10,21 +10,24 @@ import study.library.util.HibernateUtil;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+/**
+ * Implementation of @{@link UserDao} using SQL.
+ */
 public class UserDaoSqlImpl extends AbstractDaoSql<User> implements UserDao {
 
     public void delete(final Long id) {
-        super.getById(id, User.class);
+        super.load(id, User.class);
     }
 
 
     public User load(final Long id) {
-        return super.getById(id, User.class);
+        return super.load(id, User.class);
     }
 
     @Override
     public User load(final String login) {
         final Session session = HibernateUtil.getSessionFactory().openSession();
-        User ret = (User) session.createQuery("from User as user where user.login=:login")
+        final User ret = (User) session.createQuery("from User as user where user.login=:login")
                 .setParameter("login", login)
                 .getSingleResult();
         session.close();
@@ -32,18 +35,17 @@ public class UserDaoSqlImpl extends AbstractDaoSql<User> implements UserDao {
 
     }
 
-    @Override
-    public List<Book> getAssignedBooks(final User owner) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        String hql = "from Book as book where book.owner=:owner";
-        TypedQuery<Book> query = session.createQuery(hql);
-        query.setParameter("owner", owner);
-        List<Book> ret = query.getResultList();
-        session.close();
-        return ret;
+    public List<User> load() {
+        return super.load(User.class, "User");
     }
 
-    public List<User> load() {
-        return super.getAll(User.class, "User");
+    @Override
+    public List<Book> getAssignedBooks(final User owner) {
+        final Session session = HibernateUtil.getSessionFactory().openSession();
+        final String hql = "from Book as book where book.owner=:owner";
+        final TypedQuery<Book> query = session.createQuery(hql);
+        final List<Book> ret = query.setParameter("owner", owner).getResultList();
+        session.close();
+        return ret;
     }
 }

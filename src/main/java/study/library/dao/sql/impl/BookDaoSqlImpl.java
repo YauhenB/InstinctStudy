@@ -10,29 +10,29 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
- * Created by yauhen on 16.12.16.
+ * Implementation of @{@link BookDao} using SQL.
  */
 public class BookDaoSqlImpl extends AbstractDaoSql<Book> implements BookDao {
 
-    public static final String ENTITYNAME = "Book";
+    private  static final String ENTITYNAME = "Book";
 
     public void delete(final Long id) {
-        super.delById(id, ENTITYNAME);
+        super.delete(id, ENTITYNAME);
     }
 
 
     public Book load(final Long id) {
-        return super.getById(id, Book.class);
+        return super.load(id, Book.class);
     }
 
     @Override
     public Book load(final String name) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        final Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        String hql = "from Book as book where book.name=:name";
-        TypedQuery<Book> query = session.createQuery(hql);
-        query.setParameter("name", name);
-        Book ret = query.getSingleResult();
+        final String hql = "from Book as book where book.name=:name";
+        final TypedQuery<Book> query = session.createQuery(hql);
+        final Book ret = query.setParameter("name", name).getSingleResult();
+
         session.getTransaction().commit();
         session.close();
         return ret;
@@ -40,6 +40,6 @@ public class BookDaoSqlImpl extends AbstractDaoSql<Book> implements BookDao {
     }
 
     public List<Book> load() {
-        return super.getAll(Book.class, ENTITYNAME);
+        return super.load(Book.class, ENTITYNAME);
     }
 }

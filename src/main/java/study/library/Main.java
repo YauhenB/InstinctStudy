@@ -54,7 +54,7 @@ public class Main {
 
         }
 
-        Scanner sc = new Scanner(System.in);
+       final Scanner sc = new Scanner(System.in);
         while (flag) {
             System.out.println(HELLOSTRING);
 

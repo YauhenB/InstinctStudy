@@ -9,35 +9,32 @@ import study.library.model.User;
 import java.util.List;
 
 /**
- * Created by yauhen on 16.12.16.
+ * Implementation of {@link UserDao} using NoSql.
  */
 public class UserDaoNoSqlImpl extends AbstractDaoNoSql<User> implements UserDao {
 
 
+
+
     @Override
-    public List<User> load() {
-        return super.getAll();
+    public User load(final Long id) {
+        return super.load("id", id).get(0);
     }
 
     @Override
-    public User load(Long id) {
-        return super.getByParam("id", id).get(0);
-    }
-
-    @Override
-    public void delete(Long id) {
+    public void delete(final Long id) {
         super.delete(load(id));
     }
 
     @Override
-    public User load(String login) {
-        return super.getByParam("login", login).get(0);
+    public User load(final String login) {
+        return super.load("login", login).get(0);
     }
 
     @Override
-    public List<Book> getAssignedBooks(User owner) {
-        BookDaoNoSqlImpl bookDao = new BookDaoNoSqlImpl();
-        return bookDao.getByParam("owner", owner.getId());
+    public List<Book> getAssignedBooks(final User owner) {
+        final BookDaoNoSqlImpl bookDao = new BookDaoNoSqlImpl();
+        return bookDao.load("owner", owner.getId());
     }
 
     @Override
@@ -46,8 +43,8 @@ public class UserDaoNoSqlImpl extends AbstractDaoNoSql<User> implements UserDao 
     }
 
     @Override
-    public Document toMongoObj(User entity) {
-        Document document = new Document();
+    public Document toMongoObj(final User entity) {
+       final Document document = new Document();
         document.put("id", entity.getId());
         document.put("login", entity.getLogin());
         document.put("password", entity.getPassword());
@@ -55,8 +52,8 @@ public class UserDaoNoSqlImpl extends AbstractDaoNoSql<User> implements UserDao 
     }
 
     @Override
-    public User fromMongoObj(Document document) {
-        User user = new User();
+    public User fromMongoObj(final Document document) {
+        final User user = new User();
         user.setId(document.getLong("id"));
         user.setLogin(document.getString("login"));
         user.setPassword(document.getString("password"));

@@ -1,8 +1,16 @@
 package study.library.model;
 
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+/**
+ * User model.
+ */
 @Entity
 @Table(name = "users")
 public class User {
@@ -22,7 +30,7 @@ public class User {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -31,7 +39,7 @@ public class User {
         return login;
     }
 
-    public void setLogin(String login) {
+    public void setLogin(final String login) {
         this.login = login;
     }
 
@@ -40,14 +48,14 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
         this.password = password;
     }
 
     @Override
     public String toString() {
-        return  "\nID:" + this.id +
-                "\nLogin:" + this.login +
-                "\nPassword:" + this.password;
+        return "\nID:" + this.id
+                + "\nLogin:" + this.login
+                + "\nPassword:" + this.password;
     }
 }
