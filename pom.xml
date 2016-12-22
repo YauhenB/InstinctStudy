@@ -89,7 +89,43 @@
         <version>1.19.3</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-frontend-jaxrs -->
+    <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+        <version>3.1.9</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-transports-http -->
+    <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-transports-http</artifactId>
+        <version>3.1.9</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-frontend-jaxws -->
+    <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-frontend-jaxws</artifactId>
+        <version>3.1.9</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-rt-transports-http-jetty</artifactId>
+        <version>3.1.8</version>
+    </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-core -->
+    <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-core</artifactId>
+        <version>3.1.9</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.axis2/axis2-java2wsdl-maven-plugin -->
+    <dependency>
+        <groupId>org.apache.axis2</groupId>
+        <artifactId>axis2-java2wsdl-maven-plugin</artifactId>
+        <version>1.6.2</version>
+    </dependency>
 
     <!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
     <dependency>
@@ -111,6 +147,8 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
+
         </plugins>
     </build>
 

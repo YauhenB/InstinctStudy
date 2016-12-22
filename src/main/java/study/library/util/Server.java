@@ -10,10 +10,15 @@ import com.sun.jersey.api.core.ResourceConfig;
 import com.sun.jersey.core.spi.component.ioc.IoCComponentProviderFactory;
 import com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory;
 import org.glassfish.grizzly.http.server.HttpServer;
+import study.library.dao.BookDao;
 import study.library.dao.UserDao;
+import study.library.dao.sql.impl.BookDaoSqlImpl;
 import study.library.dao.sql.impl.UserDaoSqlImpl;
+import study.library.service.BookService;
+import study.library.service.UserService;
 
 import javax.ws.rs.core.UriBuilder;
+import javax.xml.ws.Endpoint;
 import java.io.IOException;
 import java.net.URI;
 
@@ -31,28 +36,32 @@ public class Server {
     }
 
     /**
-     *
      * @throws IOException exception
      */
 
     public void startServer() throws IOException {
-
 
         final Injector injector = Guice.createInjector(new ServletModule() {
             @Override
             protected void configureServlets() {
                 bind(new TypeLiteral<UserDao>() {
                 }).to(UserDaoSqlImpl.class);
+
+                bind(new TypeLiteral<BookDao>() {
+                }).to(BookDaoSqlImpl.class);
             }
         });
 
-       final ResourceConfig rc = new PackagesResourceConfig("study.library");
+        final ResourceConfig rc = new PackagesResourceConfig("study.library");
         final IoCComponentProviderFactory ioc = new GuiceComponentProviderFactory(rc, injector);
+        Endpoint.publish("http://localhost:9988/soap/user", new UserService());
+        Endpoint.publish("http://localhost:9988/soap/book", new BookService());
         server = GrizzlyServerFactory.createHttpServer(BASE_URI + "services/", rc, ioc);
 
+
     }
-    public void stopServer()
-    {
+
+    public void stopServer() {
         server.stop();
     }
 }

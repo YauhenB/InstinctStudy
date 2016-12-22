@@ -1,9 +1,10 @@
-package study.library.service.rest;
+package study.library.service;
 
 import study.library.dao.UserDao;
 import study.library.dao.sql.impl.UserDaoSqlImpl;
 import study.library.model.User;
 
+import javax.jws.WebService;
 import javax.ws.rs.*;
 import java.util.List;
 
@@ -13,9 +14,11 @@ import java.util.List;
 
 @Consumes("application/xml")
 @Produces("application/xml")
-@Path("/rest/user")
-public class UserRestService {
+@WebService(endpointInterface = "study.library.service.UserWebService")
+@Path("user")
+public class UserService implements UserWebService {
     private UserDao userDao = new UserDaoSqlImpl();
+
 
     @GET
     @Path("{id}")
@@ -25,10 +28,12 @@ public class UserRestService {
 
     }
 
+
     @GET
     public List<User> getAll() {
         return userDao.load();
     }
+
 
 
     @POST
@@ -41,6 +46,7 @@ public class UserRestService {
         userDao.create(user);
 
     }
+
 
     @DELETE
     @Path("delete/{id}")
