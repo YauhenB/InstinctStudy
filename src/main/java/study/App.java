@@ -26,13 +26,13 @@ public class App {
     @Autowired
     private DBService dbService;
 
-    public App(ApplicationContext context) {
+    public App(final ApplicationContext context) {
         this.context = context;
     }
 
     public void run() {
 
-        User testUser = new User();
+        final User testUser = new User();
         testUser.setSurname("Ivanov");
         testUser.setName("Vasya");
         LOG.info(userService.getInfo(testUser));

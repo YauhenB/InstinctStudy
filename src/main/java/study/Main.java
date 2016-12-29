@@ -11,15 +11,9 @@ import study.config.StudyConfig;
 public class Main {
 
 
-
-
     public static void main(String[] args) {
-
-
-
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(StudyConfig.class);
-
-        App app=context.getBean(App.class);
+        final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(StudyConfig.class);
+        final App app = context.getBean(App.class);
         app.run();
 
 

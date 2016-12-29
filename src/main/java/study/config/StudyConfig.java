@@ -29,7 +29,7 @@ public class StudyConfig {
     }
 
     @Bean
-    App app(ApplicationContext context) {
+    App app(final ApplicationContext context) {
         return new App(context);
     }
 

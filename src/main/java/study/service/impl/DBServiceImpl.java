@@ -11,7 +11,7 @@ import study.service.DBService;
 public class DBServiceImpl implements DBService {
     @Override
     public String getInfo(final Connection connection) {
-        return "URL: " + connection.getUrl() + "\nUsername: " +
-                connection.getUsername() + "\nPassword: " + connection.getPassword();
+        return "URL: " + connection.getUrl() + "\nUsername: "
+                + connection.getUsername() + "\nPassword: " + connection.getPassword();
     }
 }
