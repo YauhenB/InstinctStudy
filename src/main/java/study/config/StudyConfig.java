@@ -1,5 +1,7 @@
 package study.config;
 
+import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
@@ -16,6 +18,7 @@ import study.service.impl.UserServiceImpl;
 @ComponentScan(basePackages = "study")
 @ImportResource("db-config.xml")
 public class StudyConfig {
+
 
     @Bean
     @Scope("prototype")
@@ -41,6 +44,14 @@ public class StudyConfig {
     private String url;
 
     @Bean
+    @Scope("singleton")
+    UserFactory userFactory() {
+        return new UserFactory();
+    }
+
+
+    @Bean
+    @Scope("singleton")
     Connection connection() {
         final Connection connection = new Connection();
         connection.setPassword(password);
