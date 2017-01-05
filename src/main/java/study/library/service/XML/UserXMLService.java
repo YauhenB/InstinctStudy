@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import study.library.dao.UserDao;
+import study.library.dao.UserRepository;
 import study.library.model.User;
 import study.library.service.UserService;
 
@@ -19,11 +19,11 @@ import java.util.List;
 public class UserXMLService implements UserService {
 
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
 
     @GetMapping(value = "{id}")
     public User getUser(@PathVariable("id") final Long id) {
-        final User user = userDao.load(id);
+        final User user = userRepository.findOne(id);
         return user;
 
     }
@@ -31,7 +31,8 @@ public class UserXMLService implements UserService {
 
     @GetMapping("/")
     public List<User> getAll() {
-        return userDao.load();
+
+        return (List) userRepository.findAll();
     }
 
 
@@ -41,14 +42,14 @@ public class UserXMLService implements UserService {
         final User user = new User();
         user.setLogin(name);
         user.setPassword(pass);
-        userDao.create(user);
+        userRepository.save(user);
 
     }
 
     @DeleteMapping(value = "delete/{id}")
     public void deleteUser(@PathVariable("id") final Long id) {
 
-        userDao.delete(id);
+        userRepository.delete(id);
     }
 
 }

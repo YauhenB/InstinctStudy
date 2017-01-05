@@ -1,10 +1,14 @@
 package study.library.service.XML;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import study.library.dao.BookDao;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import study.library.dao.BookRepository;
 import study.library.model.Book;
 import study.library.service.BookService;
 
@@ -18,12 +22,12 @@ import java.util.List;
 public class BookXMLService implements BookService {
 
     @Autowired
-    private BookDao bookDao;
+    private BookRepository bookRepository;
 
 
     @GetMapping(value = "{id}")
     public Book getBook(@PathVariable("id") final Long id) {
-        final Book book = bookDao.load(id);
+        final Book book = bookRepository.findOne(id);
         return book;
 
     }
@@ -31,7 +35,8 @@ public class BookXMLService implements BookService {
 
     @GetMapping("/")
     public List<Book> getAll() {
-        return bookDao.load();
+
+        return (List) bookRepository.findAll();
     }
 
 
@@ -41,13 +46,13 @@ public class BookXMLService implements BookService {
         final Book book = new Book();
         book.setName(name);
         book.setAuthor(author);
-        bookDao.create(book);
+        bookRepository.save(book);
 
     }
 
     @DeleteMapping(value = "delete/{id}")
     public void deleteBook(@PathVariable("id") final Long id) {
-        bookDao.delete(id);
+        bookRepository.delete(id);
     }
 
 

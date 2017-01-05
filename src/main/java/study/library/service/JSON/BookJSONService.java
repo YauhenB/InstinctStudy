@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import study.library.dao.BookDao;
+import study.library.dao.BookRepository;
 
 /**
  * Created by yauhen on 5.1.17.
@@ -16,17 +16,17 @@ import study.library.dao.BookDao;
 public class BookJSONService {
 
     @Autowired
-    private BookDao bookDao;
+    private BookRepository bookRepository;
 
     @GetMapping("{id}")
     public String getBook(@PathVariable("id") final Long id, final Model model) {
-        model.addAttribute("books", bookDao.load(id));
+        model.addAttribute("books", bookRepository.findOne(id));
         return "jsonTemplate";
     }
 
     @GetMapping()
     public String getAll(final Model model) {
-        model.addAttribute("books", bookDao.load());
+        model.addAttribute("books", bookRepository.findAll());
         return "jsonTemplate";
     }
 }
