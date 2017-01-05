@@ -6,18 +6,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import study.library.dao.sql.impl.BookDaoImpl;
-import study.library.dao.sql.impl.UserDaoImpl;
+import study.library.dao.BookDao;
+import study.library.dao.UserDao;
+
 
 
 @Controller
-
 public class AppController {
 
     @Autowired
-    private UserDaoImpl userDao;
+    private UserDao userDao;
     @Autowired
-    private BookDaoImpl bookDao;
+    private BookDao bookDao;
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)

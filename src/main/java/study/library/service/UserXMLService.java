@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/rest/user")
-public class UserServiceImpl implements UserService {
+public class UserXMLService implements UserService {
 
     @Autowired
     private UserDao userDao;

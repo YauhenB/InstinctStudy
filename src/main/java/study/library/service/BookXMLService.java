@@ -14,7 +14,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/rest/book")
-public class BookServiceImpl implements BookService {
+public class BookXMLService implements BookService {
 
     @Autowired
     private BookDao bookDao;
@@ -49,10 +49,5 @@ public class BookServiceImpl implements BookService {
         bookDao.delete(id);
     }
 
-    @RequestMapping(value = "/jlist")
-    public String getAllBooksJSON(final Model model) {
-        model.addAttribute("list", bookDao.load());
-        return "jsonTemplate";
-    }
 
 }

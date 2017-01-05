@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * User model.
  */
-@XmlRootElement(name = "User")
+
 @Entity
 @Table(name = "users")
 public class User {
