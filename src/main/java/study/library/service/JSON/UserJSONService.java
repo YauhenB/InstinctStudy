@@ -1,4 +1,4 @@
-package study.library.service;
+package study.library.service.JSON;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
