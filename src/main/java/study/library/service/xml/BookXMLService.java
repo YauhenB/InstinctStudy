@@ -1,4 +1,4 @@
-package study.library.service.XML;
+package study.library.service.xml;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;

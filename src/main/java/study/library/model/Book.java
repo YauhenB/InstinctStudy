@@ -10,12 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Book model.
  */
 
 @Entity
+@XmlRootElement
 @Table(name = "books")
 public class Book {
     @Id
