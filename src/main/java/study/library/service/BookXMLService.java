@@ -1,12 +1,10 @@
 package study.library.service;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import study.library.dao.BookDao;
-import study.library.dao.sql.impl.BookDaoImpl;
 import study.library.model.Book;
 
 import java.util.List;
@@ -17,25 +15,26 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/rest/book")
 public class BookServiceImpl implements BookService {
-    private BookDao bookDao = new BookDaoImpl();
 
-    @Override
-    @RequestMapping(value = "{id}")
+    @Autowired
+    private BookDao bookDao;
+
+
+    @GetMapping(value = "{id}")
     public Book getBook(@PathVariable("id") final Long id) {
         final Book book = bookDao.load(id);
         return book;
 
     }
 
-    @Override
-    @RequestMapping("/")
+
+    @GetMapping("/")
     public List<Book> getAll() {
         return bookDao.load();
     }
 
 
-    @Override
-    @RequestMapping(value = "create", method = RequestMethod.POST)
+    @PostMapping(value = "create")
     public void createBook(@RequestParam("name") final String name,
                            @RequestParam("author") final String author) {
         final Book book = new Book();
@@ -45,10 +44,15 @@ public class BookServiceImpl implements BookService {
 
     }
 
-    @Override
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "delete/{id}")
     public void deleteBook(@PathVariable("id") final Long id) {
         bookDao.delete(id);
+    }
+
+    @RequestMapping(value = "/jlist")
+    public String getAllBooksJSON(final Model model) {
+        model.addAttribute("list", bookDao.load());
+        return "jsonTemplate";
     }
 
 }
