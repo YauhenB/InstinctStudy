@@ -11,8 +11,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 import study.library.dao.sql.impl.BookDaoImpl;
@@ -23,17 +21,12 @@ import study.library.dao.sql.impl.UserDaoImpl;
 @Configuration
 @ComponentScan(basePackages = "study.library.*")
 public class AppConfig extends WebMvcConfigurerAdapter {
-    private  static  final Logger LOGGER= LoggerFactory.getLogger(AppConfig.class);
-
-
-
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(AppConfig.class);
 
     @Bean
     @Scope("singleton")
     public UserDaoImpl userDao() {
         return new UserDaoImpl();
-
     }
 
     @Bean
@@ -44,31 +37,21 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
 
     @Bean
-    public TilesConfigurer tilesConfigurer(){
-        TilesConfigurer tilesConfigurer = new TilesConfigurer();
+    public TilesConfigurer tilesConfigurer() {
+        final TilesConfigurer tilesConfigurer = new TilesConfigurer();
         tilesConfigurer.setDefinitions("/WEB-INF/views/tiles/tiles.xml");
         tilesConfigurer.setCheckRefresh(true);
         return tilesConfigurer;
     }
 
-//    @Bean
-//    public InternalResourceViewResolver viewResolver() {
-//        LOGGER.info("init views");
-//        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-//        viewResolver.setViewClass(JstlView.class);
-//        viewResolver.setPrefix("/WEB-INF/views/jsp/");
-//        viewResolver.setSuffix(".jsp");
-//        return viewResolver;
-//    }
-
     @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
-        TilesViewResolver viewResolver = new TilesViewResolver();
+    public void configureViewResolvers(final ViewResolverRegistry registry) {
+        final TilesViewResolver viewResolver = new TilesViewResolver();
         registry.viewResolver(viewResolver);
     }
 
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
         LOGGER.info("init resources");
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
