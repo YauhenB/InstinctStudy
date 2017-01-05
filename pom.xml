@@ -5,7 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>by.instinctools</groupId>
-    <artifactId>learning</artifactId>
+    <artifactId>study</artifactId>
+    <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
 <dependencies>
@@ -25,8 +26,6 @@
         <artifactId>hibernate-core</artifactId>
         <version>5.2.5.Final</version>
     </dependency>
-
-
     <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
     <dependency>
         <groupId>org.hibernate</groupId>
@@ -46,86 +45,78 @@
         <artifactId>junit</artifactId>
         <version>4.12</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
     <dependency>
-        <groupId>org.mongodb</groupId>
-        <artifactId>mongo-java-driver</artifactId>
-        <version>3.4.0</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>4.3.5.RELEASE</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.hibernate.ogm/hibernate-ogm-core -->
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
     <dependency>
-        <groupId>org.hibernate.ogm</groupId>
-        <artifactId>hibernate-ogm-core</artifactId>
-        <version>5.0.3.Final</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>4.3.5.RELEASE</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.hibernate.ogm/hibernate-ogm-mongodb -->
+
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
     <dependency>
-        <groupId>org.hibernate.ogm</groupId>
-        <artifactId>hibernate-ogm-mongodb</artifactId>
-        <version>5.0.3.Final</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>4.3.5.RELEASE</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.sun.jersey.contribs/jersey-guice -->
     <dependency>
-        <groupId>com.sun.jersey.contribs</groupId>
-        <artifactId>jersey-guice</artifactId>
-        <version>1.19.3</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>4.3.5.RELEASE</version>
+    </dependency>
+
+
+    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>2.8.5</version>
     </dependency>
 
     <dependency>
-        <groupId>com.sun.jersey</groupId>
-        <artifactId>jersey-server</artifactId>
-        <version>1.19.3</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/com.sun.jersey/jersey-client -->
-    <dependency>
-        <groupId>com.sun.jersey</groupId>
-        <artifactId>jersey-client</artifactId>
-        <version>1.19.3</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/com.sun.jersey/jersey-grizzly2 -->
-    <dependency>
-        <groupId>com.sun.jersey</groupId>
-        <artifactId>jersey-grizzly2</artifactId>
-        <version>1.19.3</version>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.8.5</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-frontend-jaxrs -->
     <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-frontend-jaxrs</artifactId>
-        <version>3.1.9</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-transports-http -->
-    <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-transports-http</artifactId>
-        <version>3.1.9</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-frontend-jaxws -->
-    <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-frontend-jaxws</artifactId>
-        <version>3.1.9</version>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-rt-transports-http-jetty</artifactId>
-        <version>3.1.8</version>
+        <groupId>com.fasterxml.jackson.dataformat</groupId>
+        <artifactId>jackson-dataformat-xml</artifactId>
+        <version>2.8.5</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-core -->
+    <!-- Apache Tiles -->
     <dependency>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-core</artifactId>
-        <version>3.1.9</version>
+        <groupId>org.apache.tiles</groupId>
+        <artifactId>tiles-core</artifactId>
+        <version>3.0.7</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.tiles</groupId>
+        <artifactId>tiles-api</artifactId>
+        <version>3.0.7</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.tiles</groupId>
+        <artifactId>tiles-servlet</artifactId>
+        <version>3.0.7</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.apache.axis2/axis2-java2wsdl-maven-plugin -->
     <dependency>
-        <groupId>org.apache.axis2</groupId>
-        <artifactId>axis2-java2wsdl-maven-plugin</artifactId>
-        <version>1.6.2</version>
+        <groupId>org.apache.tiles</groupId>
+        <artifactId>tiles-jsp</artifactId>
+        <version>3.0.7</version>
     </dependency>
+    <dependency>
+        <groupId>org.apache.tiles</groupId>
+        <artifactId>tiles-template</artifactId>
+        <version>3.0.7</version>
+    </dependency>
+
 
     <!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
     <dependency>
@@ -133,8 +124,22 @@
         <artifactId>servlet-api</artifactId>
         <version>2.5</version>
     </dependency>
+    <dependency>
+        <groupId>javax.servlet.jsp</groupId>
+        <artifactId>javax.servlet.jsp-api</artifactId>
+        <version>2.3.1</version>
+    </dependency>
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <version>1.2</version>
+    </dependency>
 
-
+    <dependency>
+        <groupId>jstl</groupId>
+        <artifactId>jstl</artifactId>
+        <version>1.2</version>
+    </dependency>
 
 </dependencies>
     <build>
@@ -147,7 +152,16 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <warSourceDirectory>src/main/webapp</warSourceDirectory>
+                    <warName>LibrarySpring</warName>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
 
         </plugins>
     </build>

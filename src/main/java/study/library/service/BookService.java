@@ -1,57 +1,26 @@
 package study.library.service;
 
-import study.library.dao.BookDao;
-import study.library.dao.sql.impl.BookDaoSqlImpl;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import study.library.model.Book;
 
-import javax.jws.WebService;
-import javax.ws.rs.*;
 import java.util.List;
 
 /**
- * Created by yauhen on 21.12.16.
+ * Created by yauhen on 4.1.17.
  */
+public interface BookService {
+    @RequestMapping("{id}")
+    Book getBook(@PathVariable("id") Long id);
 
-@Consumes("application/xml")
-@Produces("application/xml")
-@WebService(endpointInterface = "study.library.service.BookWebService")
-@Path("book")
-public class BookService implements BookWebService {
-    private BookDao bookDao = new BookDaoSqlImpl();
+    List<Book> getAll();
 
-    @Override
-    @GET
-    @Path("{id}")
-    public Book getBook(@PathParam("id") final Long id) {
-        final Book book = bookDao.load(id);
-        return book;
+    @RequestMapping(value = "create", method = RequestMethod.POST)
+    void createBook(@RequestParam("name") String name,
+                    @RequestParam("author") String author);
 
-    }
-
-    @Override
-    @GET
-    public List<Book> getAll() {
-        return bookDao.load();
-    }
-
-
-    @Override
-    @POST
-    @Path("create")
-    public void createBook(@QueryParam("name") final String name,
-                           @QueryParam("author") final String author) {
-        final Book book = new Book();
-        book.setName(name);
-        book.setAuthor(author);
-        bookDao.create(book);
-
-    }
-
-    @Override
-    @DELETE
-    @Path("delete/{id}")
-    public void deleteBook(@PathParam("id") final Long id) {
-        bookDao.delete(id);
-    }
-
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    void deleteBook(@PathVariable("id") Long id);
 }

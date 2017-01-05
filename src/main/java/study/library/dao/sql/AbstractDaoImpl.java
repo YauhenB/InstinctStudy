@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @param <T> Entity name
  */
-public abstract class AbstractDaoSql<T> {
+public abstract class AbstractDaoImpl<T> {
 
     /**
      * Creating or updating an entity instance.

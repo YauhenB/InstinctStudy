@@ -1,7 +1,7 @@
 package study.library.dao.sql.impl;
 
 import org.hibernate.Session;
-import study.library.dao.sql.AbstractDaoSql;
+import study.library.dao.sql.AbstractDaoImpl;
 import study.library.dao.BookDao;
 import study.library.model.Book;
 import study.library.util.HibernateUtil;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Implementation of @{@link BookDao} using SQL.
  */
-public class BookDaoSqlImpl extends AbstractDaoSql<Book> implements BookDao {
+public class BookDaoImpl extends AbstractDaoImpl<Book> implements BookDao {
 
     private  static final String ENTITYNAME = "Book";
 

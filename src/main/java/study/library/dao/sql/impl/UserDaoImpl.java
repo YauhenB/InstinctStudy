@@ -1,7 +1,7 @@
 package study.library.dao.sql.impl;
 
 import org.hibernate.Session;
-import study.library.dao.sql.AbstractDaoSql;
+import study.library.dao.sql.AbstractDaoImpl;
 import study.library.dao.UserDao;
 import study.library.model.Book;
 import study.library.model.User;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Implementation of @{@link UserDao} using SQL.
  */
-public class UserDaoSqlImpl extends AbstractDaoSql<User> implements UserDao {
+public class UserDaoImpl extends AbstractDaoImpl<User> implements UserDao {
 
     public void delete(final Long id) {
         super.load(id, User.class);
