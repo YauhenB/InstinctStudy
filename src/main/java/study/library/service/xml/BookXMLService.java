@@ -1,13 +1,15 @@
 package study.library.service.xml;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 import study.library.dao.BookRepository;
 import study.library.model.Book;
 import study.library.service.BookService;
@@ -15,9 +17,9 @@ import study.library.service.BookService;
 import java.util.List;
 
 /**
- * Created by yauhen on 21.12.16.
+ * XML REST for books.
  */
-@RestController
+@Controller
 @RequestMapping(value = "/rest/book")
 public class BookXMLService implements BookService {
 
@@ -25,16 +27,20 @@ public class BookXMLService implements BookService {
     private BookRepository bookRepository;
 
 
-    @GetMapping(value = "{id}")
-    public Book getBook(@PathVariable("id") final Long id) {
+    @GetMapping(value = "{id}", produces = {MediaType.APPLICATION_XML_VALUE}, headers = "Accept=application/xml")
+    public
+    @ResponseBody
+    Book getBook(@PathVariable("id") final Long id) {
         final Book book = bookRepository.findOne(id);
         return book;
 
     }
 
 
-    @GetMapping("/")
-    public List<Book> getAll() {
+    @GetMapping(value = "/", produces = {MediaType.APPLICATION_XML_VALUE}, headers = "Accept=application/xml")
+    public
+    @ResponseBody
+    List<Book> getAll() {
 
         return (List) bookRepository.findAll();
     }

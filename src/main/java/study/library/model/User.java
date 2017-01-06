@@ -7,26 +7,28 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * User model.
  */
 
 @Entity
-@XmlRootElement
 @Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "id")
     private Long id;
+
 
     @Column(name = "login")
     private String login;
 
+
     @Column(name = "password")
     private String password;
+
 
 
     public Long getId() {

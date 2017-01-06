@@ -9,7 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 import study.library.dao.BookRepository;
 import study.library.dao.UserRepository;
 
-
+/**
+ * Controller class for HTML pages.
+ */
 @Controller
 @RequestMapping("/")
 public class AppController {

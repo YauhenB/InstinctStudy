@@ -16,7 +16,9 @@ import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
-
+/**
+ *  Beans config file.
+ */
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "study.library.*")
@@ -30,19 +32,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         view.setPrettyPrint(true);
         return view;
     }
-//
-//    @Bean
-//    public ViewResolver viewResolver() {
-//        return new BeanNameViewResolver();
-//    }
-
-//    @Bean
-//    public InternalResourceViewResolver viewResolver() {
-//        final InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-//        resolver.setPrefix("/WEB-INF/views/jsp/");
-//        resolver.setSuffix(".jsp");
-//        return resolver;
-//    }
 
     @Bean
     public TilesConfigurer tilesConfigurer() {

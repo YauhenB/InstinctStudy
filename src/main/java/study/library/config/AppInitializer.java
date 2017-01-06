@@ -2,6 +2,9 @@ package study.library.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+/**
+ * Init for SpringBoot.
+ */
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
